@@ -1,0 +1,17 @@
+version: '2'
+services:
+    service1-app:
+        image: service1:1.0
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATA_MONGODB_URI=mongodb://service1-mongodb:27017
+            - SPRING_DATA_MONGODB_DATABASE=service1
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    service1-mongodb:
+        image: mongo:3.4.8
+        ports:
+            - "27017:27017"
+        volumes:
+            - ~/volumes/jhipster/service1/mongodb/:/data/db/
